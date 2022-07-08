@@ -46,5 +46,6 @@ set -e
 (cd simu5g && make makefiles)
 {%- endif %}
 
-(cd {{ cookiecutter.project_name_as_file_name }} && ./configure "$@")
+(cd AirMobiSim_libveins && ./configure "$@")
 
+(cd {{ cookiecutter.project_name_as_file_name }} && ./configure "$@")
