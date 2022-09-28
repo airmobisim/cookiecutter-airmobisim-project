@@ -32,6 +32,15 @@ endif
 
 # default target
 all: src/Makefile $(ADDL_TARGETS)
+ifndef AIRMOBISIMHOME
+	$(error AIRMOBISIMHOME is not set! Please run the following commands: 'export AIRMOBISIMHOME=/path/to/your/AirMobiSim' )
+endif
+
+ifneq (,$(wildcard airmobisim.proto))
+	@rm airmobisim.proto
+endif
+	@ln -s ../AirMobiSim/proto/airmobisim.proto airmobisim.proto
+	@conan install . --build missing --profile=default
 ifdef MODE
 	@cd src && $(MAKE)
 else
