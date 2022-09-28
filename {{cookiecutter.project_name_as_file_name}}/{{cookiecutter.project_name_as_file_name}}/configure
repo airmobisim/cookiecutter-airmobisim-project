@@ -390,6 +390,10 @@ if options.simu5g:
 {%- endif %}
 
 
+run_libs = [os.path.join('src', 'veins_libairmobisim')]
+run_neds = [os.path.join('src', 'veins_libairmobisim')]
+run_imgs = [os.path.join('images')]
+
 # Start creating files
 if not os.path.isdir('out'):
     os.mkdir('out')
