@@ -52,6 +52,7 @@ parser = OptionParser()
 parser.add_option("-v", "--verbose", dest="count_verbose", default=0, action="count", help="increase verbosity [default: don't log infos, debug]")
 parser.add_option("-q", "--quiet", dest="count_quiet", default=0, action="count", help="decrease verbosity [default: log warnings, errors]")
 parser.add_option("--with-veins", dest="veins", help="link with a version of Veins installed in PATH", metavar="PATH", default="../veins")
+parser.add_option("--with-airmobisim", dest="airmobisim", help="link with a version of AirMobiSim_libVeins installed in PATH", metavar="PATH", default="../AirMobiSim_libveins")
 {%- if cookiecutter.use_veins_vlc == "yes" %}
 parser.add_option("--with-veins-vlc", dest="veins_vlc", help="link with a version of Veins VLC installed in PATH", metavar="PATH", default="../veins_vlc")
 {%- endif %}
@@ -118,6 +119,18 @@ if options.veins:
     run_libs = [os.path.relpath(os.path.join(options.veins, 'src', 'veins'))] + run_libs
     run_neds = [os.path.relpath(os.path.join(options.veins, 'src', 'veins'))] + run_neds
     run_imgs = [os.path.relpath(os.path.join(options.veins, 'images'))] + run_imgs
+
+if options.airmobisim:
+    airmobisim_header_dirs = [os.path.join(os.path.relpath(options.airmobisim, 'src'), 'src')]
+    airmobisim_includes = ['-I' + s for s in airmobisim_header_dirs]
+    airmobisim_link = ["-L" + os.path.join(os.path.relpath(options.airmobisim, 'src'), 'src'), "-lveins_libairmobisim$(D)"]
+    airmobisim_defs = []
+
+    makemake_flags += airmobisim_includes + airmobisim_link + airmobisim_defs
+    run_libs = [os.path.relpath(os.path.join(options.airmobisim, 'src', 'veins_libairmobisim'))] + run_libs
+    run_neds = [os.path.relpath(os.path.join(options.airmobisim, 'src', 'veins_libairmobisim'))] + run_neds
+    run_imgs = [os.path.relpath(os.path.join(options.airmobisim, 'images'))] + run_imgs
+
 {%- if cookiecutter.use_inet == "yes" %}
 
 
