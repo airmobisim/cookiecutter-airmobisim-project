@@ -66,16 +66,12 @@ else
 endif
 {%- endif %}
 
-ifdef MODE
 	$(MAKE) -C AirMobiSim_libveins all
-else
-	$(MAKE) -C AirMobiSim_libveins all MODE=release
-	$(MAKE) -C AirMobiSim_libveins all MODE=debug
-endif
 	$(MAKE) -C {{ cookiecutter.project_name_as_file_name }} all
 
 clean:
 	$(MAKE) -C veins clean
+	$(MAKE) -C AirMobiSim_libveins clean
 {%- if cookiecutter.use_inet == "yes" %}
 	$(MAKE) -C veins/subprojects/veins_inet clean
 	$(MAKE) -C inet clean
