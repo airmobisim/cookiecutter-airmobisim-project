@@ -77,7 +77,7 @@ subprocess.check_call(['git', 'subtree', 'add', '--prefix=simu5g', '--message', 
 subprocess.check_call(['git', 'subtree', 'add', '--prefix=AirMobiSim', '--message', 'Merge AirMobiSim Master', 'https://github.com/airmobisim/AirMobiSim.git', 'v0.1'])
 
 # AirMobiSim_libveins
-subprocess.check_call(['git', 'subtree', 'add', '--prefix=AirMobiSim_libveins', '--message', 'Merge AirMobiSim_libveins Master', 'https://github.com/airmobisim/AirMobiSim_libveins.git', 'v0.1'])
+subprocess.check_call(['git', 'subtree', 'add', '--prefix=AirMobiSim_libveins', '--message', 'Merge AirMobiSim_libveins Master', 'https://github.com/airmobisim/AirMobiSim_libveins.git', 'v0.2'])
 
 
 # Veins
